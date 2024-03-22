@@ -1,0 +1,14 @@
+@media screen and (min-width: 300px) and (max-width: 375px) {
+    header{
+      background-image: url('/mobile/bg-pattern-header.svg');
+      background-repeat: no-repeat;
+      min-height: 10vh; 
+      padding: 1rem 1.5rem; 
+      width: 100vw;
+    }
+    h1 {
+        font-size: 1.4rem; 
+        font-weight: 700;
+        color: white; 
+    }
+}

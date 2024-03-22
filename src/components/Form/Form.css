@@ -1,0 +1,29 @@
+@media screen and (min-width: 300px) and (max-width: 375px) {
+   form {
+    position: relative;
+    bottom: 30px;
+    margin: 0rem 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: white;
+   }
+
+    form > div {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+
+   div > input {
+    height: 100%;
+    border: transparent;
+    }
+
+    button {
+        height: 3rem;
+        width: 3rem;
+        border: transparent;
+    }
+
+   }
