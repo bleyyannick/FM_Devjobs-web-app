@@ -18,8 +18,14 @@
    div > input {
     height: 100%;
     width: 55%;
-    border: transparent;
+    border: white
     }
+
+    div > input:focus {
+        outline: none; 
+    }
+
+
 
     button {
         height: 3rem;
