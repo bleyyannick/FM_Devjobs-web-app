@@ -3,8 +3,7 @@
       background-image: url('/mobile/bg-pattern-header.svg');
       background-repeat: no-repeat;
       min-height: 10vh; 
-      padding: 1rem 1.5rem; 
-      width: 100vw;
+      padding: 1rem 1.5rem;
     }
     h1 {
         font-size: 1.4rem; 

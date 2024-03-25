@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import './CardList.css'; 
 type Job = {
     id: number;
@@ -25,10 +25,30 @@ type CardListProps = {
     jobs: Job[]
 }
 export const CardList :FC<CardListProps> = ({jobs} : CardListProps) => {
-    console.log(jobs)
-    return (
-        <div>
-          
+    const cards :ReactNode = jobs.map(job => {
+        return (
+          <div className="card" key={job.id}>
+              <div className="card-img" style={{background: `${job.logoBackground}`}}>
+                <img src={job.logo} alt="log" />
+              </div>
+            <div className="container-card-description">
+                <div className="card-description">
+                  <ul className="card-job-time">
+                    <li>{job.postedAt}</li>
+                    <li>{job.contract}</li>
+                  </ul>
+                  <p>{job.position}</p>
+                  <p>{job.company}</p>
+                </div>
+                <p className="card-location">{job.location}</p>
+            </div>
         </div>
+        )
+    })
+    return (
+        <section>
+            {cards}
+        </section>
     )
-}
+
+    }
