@@ -7,12 +7,10 @@ import { CardList } from "../../components/CardList/CardList";
 
 export const Home :FC = () => {
     return( 
-        <>
-          <Header />
-          <Form />
           <main className="container">
+            <Header />
+            <Form />
             <CardList jobs={data} />
           </main>
-        </>
     )
 }

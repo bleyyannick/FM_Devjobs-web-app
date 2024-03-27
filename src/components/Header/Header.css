@@ -1,3 +1,9 @@
+h1 {
+  font-size: 28px;
+  color: white;
+}
+
+
 @media screen and (min-width: 300px) and (max-width: 375px) {
     header{
       background-image: url('/mobile/bg-pattern-header.svg');
@@ -5,9 +11,20 @@
       min-height: 10vh; 
       padding: 1rem 1.5rem;
     }
-    h1 {
-        font-size: 1.4rem; 
-        font-weight: 700;
-        color: white; 
-    }
+}
+
+@media screen and (min-width: 950px) {
+
+  header {
+    background-image: url('/desktop/bg-pattern-header.svg');
+    background-repeat: no-repeat;
+    min-height: 10vh; 
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    padding: 0 8rem;
+
+  }
+
+
 }

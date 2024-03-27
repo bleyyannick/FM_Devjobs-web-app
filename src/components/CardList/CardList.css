@@ -1,4 +1,6 @@
-section {
+
+
+  section {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -7,8 +9,8 @@ section {
 }
 
 .card {
-    background: white;
-  width: 300px;
+  background: white;
+  width: 350px;
   height: 250px;
   padding: 0 1.5rem;
   box-sizing: border-box;
@@ -35,9 +37,6 @@ section {
 }
 
 
-.card-job-time {
-
-}
 
 
 .card-description {
@@ -59,6 +58,25 @@ section {
 
 }
 
-.card-location {
+@media screen and (min-width: 300px) and (max-width: 375px) {
+  .card {
+    width: 100%;
+  }
+
+  section {
+    margin: 0 1.5rem;
+  }
+
+}
+
+@media screen and (min-width: 950px) {
+
+ section {
+  margin: 3rem 7rem 0 7rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+ }
 
 }
