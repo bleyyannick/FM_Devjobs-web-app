@@ -1,17 +1,30 @@
 import { FC } from 'react'; 
-import iconFilter from '/mobile/icon-filter.svg'; 
+//import iconCheck from '/desktop/icon-check.svg';
+import iconLocation from '/desktop/icon-location.svg';
+import iconSearch from '/desktop/icon-search.svg';
+import iconFilter from '/mobile/icon-filter.svg'
 import './Form.css'; 
 
 
 
 export const Form: FC = ()=> {
     return (
-        <form>
+         <form>
             <div>
-                <input type='text' placeholder="Filter by title" />
-                <img src={iconFilter} />
-                <button type='submit'> Search</button>
+              <img src={iconSearch} />
+              <input type='text' placeholder="Filter by title" />
+              <img className="hidden" src={iconFilter} />
             </div>
-        </form>
+            <div>
+              <img src={iconLocation} alt="" />
+              <input type='text' placeholder="Filter by title" />
+            
+            </div>
+            <div>
+               <input type="checkbox"  id="full-time"/>
+               <label htmlFor="full-time">Full Time</label>
+            </div>
+            <div><button type='submit'>Search</button></div>
+         </form>
     )
 }
