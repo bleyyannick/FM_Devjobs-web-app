@@ -4,7 +4,9 @@ import './Header.css';
 export const Header: FC = () => {
     return(
         <header>
-            <h1>devjobs</h1>
+            <div>
+                <h1>devjobs</h1>
+            </div>
         </header>
     )
 }

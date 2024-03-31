@@ -10,21 +10,21 @@ import './Form.css';
 export const Form: FC = ()=> {
     return (
          <form>
-            <div>
+            <div className='form-filter-title'>
               <img src={iconSearch} />
-              <input type='text' placeholder="Filter by title" />
+              <input type='text' placeholder="Filter by title,companies,expertise.." />
               <img className="hidden" src={iconFilter} />
             </div>
-            <div>
+            <div className='form-filter-location'>
               <img src={iconLocation} alt="" />
               <input type='text' placeholder="Filter by title" />
             
             </div>
-            <div>
+            <div className='form-filter-fullTime'>
                <input type="checkbox"  id="full-time"/>
-               <label htmlFor="full-time">Full Time</label>
+               <label htmlFor="full-time">Full Time Only</label>
             </div>
-            <div><button type='submit'>Search</button></div>
+            <div className='form-btn'><button type='submit'>Search</button></div>
          </form>
     )
 }

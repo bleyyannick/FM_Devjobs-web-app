@@ -23,9 +23,13 @@ h1 {
     height: 10rem;
     display: flex;
     align-items: center;
-    padding: 0 8rem;
-    background-size: 100%;
+    background-size: 100% 100%;
+  }
 
+  header div {
+    width: 83%; 
+    margin:auto;
+    padding-bottom: 1.2rem;
   }
 
 

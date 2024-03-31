@@ -11,9 +11,31 @@ form {
     border-radius: 6px;
     position: relative;
     bottom: 40px;
-    max-width: 1250px;
 }
 
+.form-filter-title {
+  width: 50%;
+}
+.form-filter-title input, .form-filter-location {
+    width: 100%; 
+}
+
+.form-filter-location {
+  width: 25%
+}
+
+.form-btn {
+  justify-content: center;
+  width: auto;
+}
+
+.form-btn button {
+    padding: .8rem 1.5rem;
+    box-sizing: border-box;
+    border: transparent;
+    background: violet;
+    border-radius: 3px;
+}
 
 form div {
     display: flex;
@@ -27,8 +49,9 @@ form div > input {
     outline: none;
     border: transparent;
     margin-left: 1rem;
+    margin-right: 1rem;
 }
- 
+
 
 
 
@@ -58,8 +81,6 @@ form div > input {
     div > input:focus {
         outline: none; 
     }
-
-
 
     button {
         height: 3rem;
