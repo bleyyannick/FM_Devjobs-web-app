@@ -29,13 +29,6 @@ form {
   width: auto;
 }
 
-.form-btn button {
-    padding: .8rem 1.5rem;
-    box-sizing: border-box;
-    border: transparent;
-    background: violet;
-    border-radius: 3px;
-}
 
 form div {
     display: flex;
@@ -53,7 +46,9 @@ form div > input {
 }
 
 
-
+.hidden {
+    display:none; 
+}
 
 @media screen and (min-width: 300px) and (max-width: 375px) {
    form {
@@ -90,7 +85,4 @@ form div > input {
 
    }
 
-
-   .hidden {
-    display:none; 
-   }
+  

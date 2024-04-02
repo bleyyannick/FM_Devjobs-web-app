@@ -6,6 +6,7 @@ section {
   justify-content: space-between;
   width: 83%;
   margin: auto;
+  gap: 3rem; 
  }
  
 .card {
@@ -15,6 +16,7 @@ section {
   padding: 0 1.5rem;
   box-sizing: border-box;
   border-radius: 6px;
+  margin: auto; 
   margin-bottom: 3rem; 
 }
 .card-img {

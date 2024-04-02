@@ -1,0 +1,9 @@
+
+
+.btn {
+    padding: .8rem 1.5rem;
+    box-sizing: border-box;
+    border: transparent;
+    background: violet;
+    border-radius: 3px;
+}

@@ -4,6 +4,7 @@ import iconLocation from '/desktop/icon-location.svg';
 import iconSearch from '/desktop/icon-search.svg';
 import iconFilter from '/mobile/icon-filter.svg'
 import './Form.css'; 
+import { Button } from '../Button/Button';
 
 
 
@@ -24,7 +25,9 @@ export const Form: FC = ()=> {
                <input type="checkbox"  id="full-time"/>
                <label htmlFor="full-time">Full Time Only</label>
             </div>
-            <div className='form-btn'><button type='submit'>Search</button></div>
+            <div className='form-btn'>
+              <Button btnText="Search" />
+            </div>
          </form>
     )
 }

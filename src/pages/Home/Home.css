@@ -3,3 +3,8 @@
 .container {
     background: #F4F6F8;
 }
+
+.container-btn {
+    display: flex; 
+    justify-content: center;
+}
