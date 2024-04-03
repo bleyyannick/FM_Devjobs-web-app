@@ -26,11 +26,8 @@ type CardListProps = {
     jobs: Job[]
 }
 export const CardList :FC<CardListProps> = ({jobs} : CardListProps) => {
-    const cards :ReactNode = jobs.map(job => <Card {...job} />)
+    const cards :ReactNode = jobs.map(job => <Card key={job.id} {...job} />)
     return (
-        <section>
-            {cards}
-        </section>
-    )
-
+        <section>{cards}</section>
+     );
     }
