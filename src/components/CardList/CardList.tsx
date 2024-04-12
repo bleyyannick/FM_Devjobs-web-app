@@ -22,10 +22,10 @@ export type Job = {
       items: string[]
     }
 }
-type CardListProps = {
+export type JobListProps = {
     jobs: Job[]
 }
-export const CardList :FC<CardListProps> = ({jobs} : CardListProps) => {
+export const CardList :FC<JobListProps> = ({jobs} :JobListProps) => {
     const cards :ReactNode = jobs.map(job => <Card key={job.id} {...job} />)
     return (
         <section>{cards}</section>

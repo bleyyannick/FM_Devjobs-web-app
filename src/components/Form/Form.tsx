@@ -5,9 +5,9 @@ import iconFilter from '/mobile/icon-filter.svg'
 import './Form.css'; 
 import { Button } from '../Button/Button';
 export type FilterProps = {
-  distinction: string | undefined, 
-  location: string | undefined, 
-  fullTime: boolean | undefined;
+  title: string, 
+  location: string, 
+  fullTime: string | boolean;
 }
 
 export type FunctionFilterProps = {
@@ -20,12 +20,13 @@ export const Form: FC<FunctionFilterProps> = ({onFilter} : FunctionFilterProps) 
   const fullTimeRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
-    const filter = {
-      distinction: inputTitleRef.current?.value,
-      location: locationRef.current?.value,
-      fullTime: fullTimeRef.current?.checked
-      } 
-      onFilter(e,filter)
+
+    const filters = {
+      title: inputTitleRef.current ? inputTitleRef.current.value.toLocaleLowerCase() : '',
+      location: locationRef.current ? locationRef.current.value.toLocaleLowerCase() : '',
+      fullTime: fullTimeRef.current ? fullTimeRef.current.checked : '',
+      }
+      onFilter(e,filters)
   }
 
     return (
