@@ -16,44 +16,44 @@ export const Home :FC = () => {
     } else {
      filterArrayValues[2] = "part time";
     }
-    console.log();
     return filterArrayValues;
   }
 
   const updateJobs = (filterArray: FilterProps, jobsArray: JobListProps["jobs"]) => {
-     const filterValues =   getValuesFromUserInputs(filterArray); 
+     const filterValues =  getValuesFromUserInputs(filterArray); 
       const filteredJobs = jobsArray.filter( job =>  
        filterValues.every(filterValue  => {
-            // Convert job properties to lowercase and split position and location into words
-            const positionWords = job.position.toLowerCase();
-            const locationWords = job.location.toLowerCase();
-            console.log(locationWords)
+            // Convert job properties to lowercase and split the position name into an array when arrays
+            const positionName = job.position.toLowerCase().split(' ');
+            const locationName = job.location.toLowerCase();
+            const contractTime = job.contract.toLowerCase()
+            const companyName = job.company.toLowerCase();
 
             // Check if any part of the job matches the filter value
             return (
-                positionWords.includes(filterValue.toString()) ||
-                locationWords.includes(filterValue.toString()) ||
-                job.company.toLowerCase().includes(filterValue.toString()) ||
-                job.contract.toLowerCase() === filterValue.toString()
+                positionName.includes(filterValue.toString()) ||
+                locationName.includes(filterValue.toString()) ||
+                companyName.includes(filterValue.toString()) ||
+                contractTime === filterValue.toString()
             );
-            }
+          }
        ));
       return filteredJobs;
     }
   //  const resetJobs = ()  => setJobs(data); 
   const handleFilterJobs = (e: FormEvent, filter: FilterProps) :void  => {
-     e.preventDefault();
-     setJobs(() => updateJobs(filter, [...data]))
+    e.preventDefault();
+    setJobs(() => updateJobs(filter, [...data]));
   }
   
     return( 
-             <>
-              <Header />
-              <Form onFilter={handleFilterJobs}/>
-              <CardList jobs={jobs} />
-              <div className="container-btn">
-                <Button btnText="Load more" />
-              </div>
-              </>
+           <>
+            <Header />
+            <Form onFilter={handleFilterJobs}/>
+            <CardList jobs={jobs} />
+            <div className="container-btn">
+                  <Button btnText="Load more" />
+            </div>
+          </>
     )
 }

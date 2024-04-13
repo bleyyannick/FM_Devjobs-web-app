@@ -27,6 +27,9 @@ export const Form: FC<FunctionFilterProps> = ({onFilter} : FunctionFilterProps) 
       fullTime: fullTimeRef.current ? fullTimeRef.current.checked : '',
       }
       onFilter(e,filters)
+      inputTitleRef.current!.value = '';
+      locationRef.current!.value = '';
+      fullTimeRef.current!.checked = false;
   }
 
     return (
