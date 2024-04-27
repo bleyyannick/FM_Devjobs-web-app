@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import './Button.css'
 
 
-type ButtonProps = {btnText: string}; 
+type ButtonProps = ComponentPropsWithoutRef<'button'>;  
 
-export const Button :FC<ButtonProps> = ({btnText}) => 
-  <button className="btn" type='submit'>
-    <p>{btnText}</p>
+export const Button= ({children, ...props} : ButtonProps) => 
+  <button className="btn" {...props}>
+    <p>{children}</p>
   </button>; 

@@ -1,55 +1,43 @@
-import { FC, FormEvent, useRef } from 'react'; 
-import iconLocation from '/desktop/icon-location.svg';
-import iconSearch from '/desktop/icon-search.svg';
-import iconFilter from '/mobile/icon-filter.svg'
+import {  ComponentPropsWithoutRef, FormEvent, forwardRef, useImperativeHandle, useRef } from 'react'; 
 import './Form.css'; 
-import { Button } from '../Button/Button';
 export type FilterProps = {
   title: string, 
   location: string, 
-  fullTime: string | boolean;
+  fulltime: string | boolean;
 }
-
-export type FunctionFilterProps = {
-  onFilter : (e: FormEvent, obj: FilterProps) => void;
+export type FormHandle = {
+  clear: () => void;
 }
-export const Form: FC<FunctionFilterProps> = ({onFilter} : FunctionFilterProps) => {
+export type FormProps = ComponentPropsWithoutRef<'form'> & {
+  onFilter : (e: FormEvent, value: unknown) => void;
+}
+export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...props}, ref) => {
+  const form = useRef<HTMLFormElement>(null); // Create a reference to the form element
 
-  const inputTitleRef = useRef<HTMLInputElement>(null);
-  const locationRef = useRef<HTMLInputElement>(null);
-  const fullTimeRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (e: FormEvent) => {
-
-    const filters = {
-      title: inputTitleRef.current ? inputTitleRef.current.value.toLocaleLowerCase() : '',
-      location: locationRef.current ? locationRef.current.value.toLocaleLowerCase() : '',
-      fullTime: fullTimeRef.current ? fullTimeRef.current.checked : '',
+  useImperativeHandle(ref, () => {
+    return {
+      clear: () => {
+        form.current?.reset();
       }
-      onFilter(e,filters)
-      inputTitleRef.current!.value = '';
-      locationRef.current!.value = '';
-      fullTimeRef.current!.checked = false;
+    }
+  }); // Create a clear function that resets the form
+      
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formatedData = Object.fromEntries(formData.entries())
+    const filters = {
+      title: formatedData.title.toString().toLocaleLowerCase(),
+      location: formatedData.location.toString().toLocaleLowerCase(),
+      fullTime: formatedData.fulltime
+    }
+    onFilter(e,filters);// Call the onFilter function with the event and the filters object
   }
 
     return (
-         <form onSubmit={handleSubmit}>
-            <div className='form-filter-title'>
-              <img src={iconSearch} />
-              <input type='text' ref={inputTitleRef} placeholder="Filter by title, companies, expertise.." />
-              <img className="hidden" src={iconFilter} />
-            </div>
-            <div className='form-filter-location'>
-              <img src={iconLocation} alt="" />
-              <input type='text' ref={locationRef} placeholder="Filter by location" />
-            </div>
-            <div className='form-filter-fullTime'>
-               <input type="checkbox" ref={fullTimeRef}  id="full-time"/>
-               <label htmlFor="full-time">Full Time Only</label>
-            </div>
-            <div className='form-btn'>
-              <Button btnText="Search" />
-            </div>
+         <form onSubmit={handleSubmit} {...props}>
+          {children}
          </form>
     )
-}
+});
