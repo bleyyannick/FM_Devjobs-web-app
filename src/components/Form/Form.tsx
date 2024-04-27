@@ -4,13 +4,16 @@ export type FilterProps = {
   title: string, 
   location: string, 
   fulltime: string | boolean;
-}
+};
+
 export type FormHandle = {
   clear: () => void;
-}
+};
+
 export type FormProps = ComponentPropsWithoutRef<'form'> & {
   onFilter : (e: FormEvent, value: unknown) => void;
-}
+};
+
 export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...props}, ref) => {
   const form = useRef<HTMLFormElement>(null); // Create a reference to the form element
 
@@ -21,8 +24,7 @@ export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...p
       }
     }
   }); // Create a clear function that resets the form
-      
-
+  
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -36,7 +38,7 @@ export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...p
   }
 
     return (
-         <form onSubmit={handleSubmit} {...props}>
+         <form onSubmit={handleSubmit} {...props} ref={form}>
           {children}
          </form>
     )
