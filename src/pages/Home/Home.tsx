@@ -2,7 +2,7 @@ import { FC, FormEvent, useRef, useState } from "react";
 import data from '../../../data.json'; 
 import './Home.css';
 import { Header } from "../../components/Header/Header";
-import { FilterProps, Form, FormHandle } from "../../components/Form/Form";
+import { FilterProps, Form } from "../../components/Form/Form";
 import { CardList, JobListProps } from "../../components/CardList/CardList";
 import { Button } from "../../components/Button/Button";
 import iconLocation from '/desktop/icon-location.svg';
@@ -12,7 +12,7 @@ import iconFilter from '/mobile/icon-filter.svg'
 
 export const Home :FC = () => {
   const [jobs, setJobs] = useState<JobListProps["jobs"]>(data); 
-  const customForm = useRef<FormHandle>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const getValuesFromUserInputs = (filters: FilterProps) => {
     const filterValues = Object.values(filters);
@@ -41,17 +41,17 @@ export const Home :FC = () => {
       
       return filteredJobs;
     }
-  const handleFilterJobs = (e: FormEvent, value: unknown ) :void  => {
+  const handleFilterJobs = (e: FormEvent, value: FilterProps ) :void  => {
     e.preventDefault();
-    const extractedData = value as FilterProps;
+    const extractedData = value;
     setJobs(() => updateJobs(extractedData, [...data]));
-    customForm.current?.clear();
+    formRef.current?.reset();
   }
 
     return( 
            <>
             <Header />
-              <Form onFilter={handleFilterJobs} ref={customForm}>
+              <Form onFilter={handleFilterJobs} ref={formRef}>
                   <div className='form-filter-title'>
                     <img src={iconSearch} />
                     <input type='text' name="title" placeholder="Filter by title, companies, expertise.." />
