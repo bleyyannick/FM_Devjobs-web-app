@@ -3,18 +3,18 @@ import './Form.css';
 export type FilterProps = {
   title: string, 
   location: string, 
-  fulltime:  boolean;
+  fulltime: string | boolean;
 };
 
 
 export type FormProps = ComponentPropsWithRef<'form'> & {
-  onFilter : (e: FormEvent, value: unknown) => void;
+  onFilter : (e: FormEvent, value: FilterProps) => void;
 };
 
 export const Form = ({onFilter, children, ref}: {
   onFilter: (e: FormEvent, value: FilterProps) => void;
   children: React.ReactNode;
-  ref?: React.Ref<HTMLFormElement>;
+  ref: React.Ref<HTMLFormElement>;
 }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
