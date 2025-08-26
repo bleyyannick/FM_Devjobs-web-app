@@ -1,30 +1,22 @@
-import {  ComponentPropsWithoutRef, FormEvent, forwardRef, useImperativeHandle, useRef } from 'react'; 
+import {  ComponentPropsWithRef, FormEvent } from 'react'; 
 import './Form.css'; 
 export type FilterProps = {
   title: string, 
   location: string, 
-  fulltime: string | boolean;
+  fulltime:  boolean;
 };
 
-export type FormHandle = {
-  clear: () => void;
-};
 
-export type FormProps = ComponentPropsWithoutRef<'form'> & {
+export type FormProps = ComponentPropsWithRef<'form'> & {
   onFilter : (e: FormEvent, value: unknown) => void;
 };
 
-export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...props}, ref) => {
-  const form = useRef<HTMLFormElement>(null);
+export const Form = ({onFilter, children, ref}: {
+  onFilter: (e: FormEvent, value: FilterProps) => void;
+  children: React.ReactNode;
+  ref?: React.Ref<HTMLFormElement>;
+}) => {
 
-  useImperativeHandle(ref, () => {
-    return {
-      clear: () => {
-        form.current?.reset();
-      }
-    }
-  });
-  
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -32,14 +24,15 @@ export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...p
     const filters = {
       title: formatedData.title.toString().toLocaleLowerCase(),
       location: formatedData.location.toString().toLocaleLowerCase(),
-      fullTime: formatedData.fulltime
+      fulltime: formatedData.fulltime ? true : false
     }
     onFilter(e,filters);
+ 
   }
 
     return (
-         <form onSubmit={handleSubmit} {...props} ref={form}>
+         <form onSubmit={handleSubmit} ref={ref}>
           {children}
          </form>
     )
-});
+};
