@@ -1,0 +1,88 @@
+form {
+    display: flex;
+    align-items: center;
+    width: 83%;
+    margin: auto;
+    background: white;
+    height: 4.5rem;
+    margin-bottom: 5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    position: relative;
+    bottom: 40px;
+}
+
+.form-filter-title {
+  width: 50%;
+}
+.form-filter-title input, .form-filter-location {
+    width: 100%; 
+}
+
+.form-filter-location {
+  width: 25%
+}
+
+.form-btn {
+  justify-content: center;
+  width: auto;
+}
+
+
+form div {
+    display: flex;
+    align-items: center;
+    height: 90%;
+    width: 30%;
+}
+
+form div > input {
+    height: 85%;
+    outline: none;
+    border: transparent;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+.hidden {
+    display:none; 
+}
+
+@media screen and (min-width: 300px) and (max-width: 375px) {
+   form {
+    position: relative;
+    bottom: 30px;
+    margin: 0rem 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: white;
+   }
+
+    form > div {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+
+   div > input {
+    height: 100%;
+    width: 55%;
+    border: white
+    }
+
+    div > input:focus {
+        outline: none; 
+    }
+
+    button {
+        height: 3rem;
+        width: 3rem;
+        border: transparent;
+    }
+
+   }
+
+  
