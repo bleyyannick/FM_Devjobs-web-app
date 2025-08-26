@@ -15,7 +15,7 @@ export type FormProps = ComponentPropsWithoutRef<'form'> & {
 };
 
 export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...props}, ref) => {
-  const form = useRef<HTMLFormElement>(null); // Create a reference to the form element
+  const form = useRef<HTMLFormElement>(null);
 
   useImperativeHandle(ref, () => {
     return {
@@ -23,7 +23,7 @@ export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...p
         form.current?.reset();
       }
     }
-  }); // Create a clear function that resets the form
+  });
   
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export const Form = forwardRef<FormHandle, FormProps>(({onFilter, children, ...p
       location: formatedData.location.toString().toLocaleLowerCase(),
       fullTime: formatedData.fulltime
     }
-    onFilter(e,filters);// Call the onFilter function with the event and the filters object
+    onFilter(e,filters);
   }
 
     return (
