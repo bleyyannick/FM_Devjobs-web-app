@@ -1,55 +1,22 @@
-import { FC, FormEvent, useRef, useState } from "react"; 
-import data from '../../../data.json'; 
+import { FormEvent, useRef } from "react";  
 import './Home.css';
 import { Header } from "../../components/Header/Header";
 import { FilterProps, Form } from "../../components/Form/Form";
-import { CardList, Job, JobListProps } from "../../components/CardList/CardList";
+import { CardList } from "../../components/CardList/CardList";
 import { Button } from "../../components/Button/Button";
 import iconLocation from '/desktop/icon-location.svg';
 import iconSearch from '/desktop/icon-search.svg';
 import iconFilter from '/mobile/icon-filter.svg'
+import { useJobs } from "../../hooks/useJobs";
 
-export const Home: FC = () => {
-  const [jobs, setJobs] = useState<JobListProps["jobs"]>(data); 
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const normalizeJob = (job: Job) => ({
-    position: job.position.toLowerCase().split(" "),
-    location: job.location.toLowerCase(),
-    contract: job.contract.toLowerCase(),
-    company: job.company.toLowerCase(),
-  });
-
-  const isJobMatched = (job: ReturnType<typeof normalizeJob>, filters: FilterProps) => {
-    const { title, location, fulltime } = filters;
-    let matches = true;
-
-    if (title) {
-      const searchWords = title.toLowerCase().split(" ");
-      matches = matches && searchWords.every(word => job.position.includes(word) || job.company.includes(word));
-    }
-
-    if (location) {
-      matches = matches && job.location.includes(location.toLowerCase());
-    }
-
-    if (fulltime) {
-      matches = matches && job.contract === "full time";
-    }
-
-    return matches;
-  };
-
-  const updateJobs = (filters: FilterProps, jobsArray: JobListProps["jobs"]) => {
-    return jobsArray.filter(job => {
-      const normalized = normalizeJob(job);
-      return isJobMatched(normalized, filters);
-    });
-  };
+export const Home = () => {
+  const formRef =  useRef<HTMLFormElement>(null);
+  const { jobs, setJobs, updateJobs } = useJobs();
 
   const handleSubmit = (e: FormEvent, extractedData: FilterProps) => {
     e.preventDefault();
-    setJobs(updateJobs(extractedData, [...data]));
+    setJobs(updateJobs(extractedData));
     formRef.current?.reset(); 
   };
 
