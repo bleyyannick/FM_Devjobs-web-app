@@ -47,7 +47,7 @@ export const Home: FC = () => {
     });
   };
 
-  const handleFilterJobs = (e: FormEvent, extractedData: FilterProps) => {
+  const handleSubmit = (e: FormEvent, extractedData: FilterProps) => {
     e.preventDefault();
     setJobs(updateJobs(extractedData, [...data]));
     formRef.current?.reset(); 
@@ -56,7 +56,7 @@ export const Home: FC = () => {
   return (
     <>
       <Header />
-      <Form onFilter={handleFilterJobs} ref={formRef}>
+      <Form onFilter={handleSubmit} ref={formRef}>
         <div className='form-filter-title'>
           <img src={iconSearch} />
           <input type='text' name="title" placeholder="Filter by title, companies, expertise.." />
