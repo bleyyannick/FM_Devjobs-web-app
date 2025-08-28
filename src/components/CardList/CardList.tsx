@@ -1,33 +1,43 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import './CardList.css'; 
 import { Card } from "../Card/Card";
+
 export type Job = {
-    id: number;
-    company: string,
-    logo: string,
-    logoBackground: string,
-    position: string,
-    postedAt:  string,
-    contract: string,
-    location: string,
-    website: string,
-    apply: string
-    description: string,
-    requirements: {
-      content: string,
-      items: string[]
-    },
-    role: {
-      content: string,
-      items: string[]
-    }
-}
+  id: number;
+  company: string;
+  logo: string;
+  logoBackground: string;
+  position: string;
+  postedAt: string;
+  contract: string;
+  location: string;
+  website: string;
+  apply: string;
+  description: string;
+  requirements: {
+    content: string;
+    items: string[];
+  };
+  role: {
+    content: string;
+    items: string[];
+  };
+};
+
 export type JobListProps = {
-    jobs: Job[]
-}
-export const CardList :FC<JobListProps> = ({jobs} :JobListProps) => {
-    const cards :ReactNode = jobs.map(job => <Card key={job.id} {...job} />)
-    return (
-        <section>{cards}</section>
-     );
-    }
+  jobs: Job[];
+};
+
+export const CardList: FC<JobListProps> = ({ jobs }) => {
+  if (!jobs.length) {
+    return <p className="no-results">No jobs found.</p>;
+  }
+
+  return (
+    <section className="card-list" aria-label="Job offers">
+      {jobs.map(job => (
+        <Card key={job.id} {...job} />
+      ))}
+    </section>
+  );
+};
