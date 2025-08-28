@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react"; 
+import { FC, FormEvent, useRef, useState } from "react"; 
 import data from '../../../data.json'; 
 import './Home.css';
 import { Header } from "../../components/Header/Header";
@@ -11,6 +11,7 @@ import iconFilter from '/mobile/icon-filter.svg'
 
 export const Home: FC = () => {
   const [jobs, setJobs] = useState<JobListProps["jobs"]>(data); 
+  const formRef = useRef<HTMLFormElement>(null);
 
   const normalizeJob = (job: Job) => ({
     position: job.position.toLowerCase().split(" "),
@@ -49,12 +50,13 @@ export const Home: FC = () => {
   const handleFilterJobs = (e: FormEvent, extractedData: FilterProps) => {
     e.preventDefault();
     setJobs(updateJobs(extractedData, [...data]));
+    formRef.current?.reset(); 
   };
 
   return (
     <>
       <Header />
-      <Form onFilter={handleFilterJobs} >
+      <Form onFilter={handleFilterJobs} ref={formRef}>
         <div className='form-filter-title'>
           <img src={iconSearch} />
           <input type='text' name="title" placeholder="Filter by title, companies, expertise.." />
