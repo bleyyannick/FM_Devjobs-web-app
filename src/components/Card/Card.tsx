@@ -2,11 +2,12 @@ import { FC } from "react"
 import { Job } from "../CardList/CardList"
 
 export const Card :FC<Job> = ({...job}) => {
-
+  
+    const normalizedLogo = job.logo.slice(1);
     return (
-        <div className="card" key={job.id}>
+        <div className="card">
           <div className="card-img" style={{background: `${job.logoBackground}`}}>
-            <img src={job.logo} alt="log" />
+            <img src={normalizedLogo} alt="log" />
           </div>
           <div className="container-card-description">
             <div className="card-description">
