@@ -1,26 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import './index.css'
 import { Home } from './pages/Home/Home.tsx';
 import { Detail } from './pages/Detail/Detail.tsx';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />
-  },
-  {
-    path: "job_detail/:id", 
-    element: <Detail />
-  }
-]);
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="job_detail/:id" element={<Detail />} />
+      </Routes>
+    </HashRouter>
   </React.StrictMode>,
 )
