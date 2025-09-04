@@ -7,7 +7,7 @@ export const Card :FC<Job> = ({...job}) => {
     return (
         <div className="card">
           <div className="card-img" style={{background: `${job.logoBackground}`}}>
-            <img src={normalizedLogo} alt="log" />
+            <img src={normalizedLogo} alt={`${job.company} logo`} />
           </div>
           <div className="container-card-description">
             <div className="card-description">
